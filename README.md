@@ -76,25 +76,25 @@ On CDF, you can use a tool called FUSE that allows you to mount a file system at
 
 Note: <CDFID> should be replaced with your own CDF user id below.
 
-# create a directory in /tmp and go there
+create a directory in /tmp and go there
 mkdir -m 700 /tmp/<CDFID>-csc369h
 cd /tmp/<CDFID>-csc369h
 
-# to create your own disk image
+to create your own disk image
 dd if=/dev/zero of=DISKNAME.img bs=1024 count=128
 /sbin/mke2fs -N 32 -F DISKNAME.img
 
-# create a mount point and mount the image
-# CWD is /tmp/<CDFID>-csc369h
+ create a mount point and mount the image
+ CWD is /tmp/<CDFID>-csc369h
 mkdir mnt
 fuseext2 -o rw+ DISKNAME.img mnt
 
-# check to see if it is mounted
+check to see if it is mounted
 df -hl
 
-# now you can use the mounted file system, for example
+now you can use the mounted file system, for example
 mkdir mnt/test
 
-# unmount the image
+unmount the image
 fusermount -u mnt
 You can use the same strategy to mount one of the images provided above.
